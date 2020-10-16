@@ -1,4 +1,4 @@
-.title {
+.center {
   display: flex;
   justify-content: center;
 }
@@ -17,7 +17,7 @@
   align-items: center;
   box-sizing: border-box;
 }
-.button {
+.button-container {
   display: flex;
   justify-content: center;
 }
