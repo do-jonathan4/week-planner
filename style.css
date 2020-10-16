@@ -16,6 +16,9 @@
   align-items: center;
   box-sizing: border-box;
 }
+.week > h2:hover {
+  background-color: turquoise;
+}
 button {
   width: 200px;
   height: 50px;

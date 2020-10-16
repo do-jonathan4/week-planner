@@ -1,9 +1,12 @@
-var day = document.querySelectorAll('h2');
+var day = document.querySelector('.week');
 var schedule = document.querySelector('.event-viewer');
 
-schedule.addEventListener('click', dayOfWeek);
+day.addEventListener('click', dayOfWeek);
 
 function dayOfWeek() {
-  console.log('h');
+  var sentence = event.target.textContent;
+  if (event.target.className === 'week') {
+    return;
+  }
+  schedule.textContent = 'Scheduled Events for ' + sentence;
 }
-console.log('hi');
