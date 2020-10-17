@@ -8,6 +8,7 @@ var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
 var tableRow = document.querySelectorAll('tr');
 var tableBody = document.querySelector('tbody');
+var update = document.createElement('button');
 
 selectDay.addEventListener('click', dayOfWeek);
 addEntry.addEventListener('click', entryModal);
@@ -39,6 +40,7 @@ function addTask(event) {
 
   cell1.textContent = entryTime.value;
   cell2.textContent = entryDescription.value;
+  cell2.appendChild(update);
 
   modal.classList.add('hidden');
   entryTime.value = '';
