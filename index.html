@@ -75,7 +75,7 @@
       <form action="" class="center">
         <label for="task">
           <div class="center">
-            <select name="Week" id="Week">
+            <select name="Week" id="entryWeek">
               <option value="" disabled selected>Day</option>
               <option value="Sunday">Sunday</option>
               <option value="Monday">Monday</option>
@@ -85,7 +85,7 @@
               <option value="Friday">Friday</option>
               <option value="Saturday">Saturday</option>
             </select>
-            <select name="Time" id="Time" placeholder="Time">
+            <select name="Time" id="entryTime" placeholder="Time">
               <option value="" disabled selected>Time</option>
               <option value="0100">0100</option>
               <option value="0200">0200</option>
@@ -100,9 +100,9 @@
               <option value="1100">1100</option>
               <option value="1200">1200</option>
             </select>
-            <input type="submit">
+            <input type="submit" id="entrySubmit">
           </div>
-          <textarea name="description" id="" cols="70" rows="10" placeholder="Description"></textarea>
+          <textarea name="description" id="entryDescription" cols="70" rows="10" placeholder="Description"></textarea>
         </label>
       </form>
     </div>
