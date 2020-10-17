@@ -25,6 +25,9 @@ button {
   margin: 20px;
   border: 2px solid black;
 }
+.addEntry:hover {
+  background-color: cornflowerblue;
+}
 table {
   width:70%;
 }

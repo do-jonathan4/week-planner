@@ -7,9 +7,11 @@ var entrySubmit = document.getElementById('entrySubmit');
 var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
 var tableRow = document.querySelectorAll('tr');
+var tableBody = document.querySelector('tbody');
 
 selectDay.addEventListener('click', dayOfWeek);
 addEntry.addEventListener('click', entryModal);
+window.addEventListener('click', closeModal);
 entrySubmit.addEventListener('click', addTask);
 
 function dayOfWeek(event) {
@@ -23,22 +25,22 @@ function dayOfWeek(event) {
 function entryModal() {
   modal.classList.remove('hidden');
 }
-window.onclick = function (event) {
+function closeModal(event) {
   if (event.target === modal) {
     modal.classList.add('hidden');
   }
-};
+}
 
 function addTask(event) {
-  for (var i = 1; i < tableRow.length; i++) {
-    if (!tableRow[i].firstElementChild.textContent && !tableRow[i].lastElementChild.textContent) {
-      tableRow[i].firstElementChild.textContent = entryTime.value;
-      tableRow[i].lastElementChild.textContent = entryDescription.value;
+  event.preventDefault();
+  var row = tableBody.insertRow(0);
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
 
-      event.preventDefault();
-      modal.classList.add('hidden');
-      entryTime.value = '';
-      entryDescription.value = '';
-    }
-  }
+  cell1.textContent = entryTime.value;
+  cell2.textContent = entryDescription.value;
+
+  modal.classList.add('hidden');
+  entryTime.value = '';
+  entryDescription.value = '';
 }
