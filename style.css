@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
 }
-.week > h2 {
+.week > .day {
   border: 2px solid black;
   width: 150px;
   height: 150px;
@@ -15,6 +15,9 @@
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+}
+.week > .day:hover {
+  background-color: turquoise;
 }
 button {
   width: 200px;
