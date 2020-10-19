@@ -8,12 +8,14 @@ var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
 var tableRow = document.querySelectorAll('tr');
 var tableBody = document.querySelector('tbody');
-
+var updateButton = document.querySelector('.update');
+var modalUpdate = document.querySelector('.modalUpdate');
 
 selectDay.addEventListener('click', dayOfWeek);
 addEntry.addEventListener('click', entryModal);
 window.addEventListener('click', closeModal);
 entrySubmit.addEventListener('click', addTask);
+updateButton.addEventListener('click', updateModal);
 
 function dayOfWeek(event) {
   if (event.target.className !== 'day') {
@@ -25,6 +27,9 @@ function dayOfWeek(event) {
 
 function entryModal() {
   modal.classList.remove('hidden');
+}
+function updateModal() {
+  modalUpdate.classList.remove('hidden');
 }
 function closeModal(event) {
   if (event.target === modal) {
