@@ -6,7 +6,7 @@ var entrySubmit = document.getElementById('entrySubmit');
 var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
 var tableBody = document.querySelector('tbody');
-var updateButton = document.getElementById('update');
+var updateButton = document.getElementById('updateButton');
 
 selectDay.addEventListener('click', dayOfWeek);
 addEntry.addEventListener('click', entryModal);
@@ -40,16 +40,14 @@ function addTask(event) {
 
   cell1.textContent = entryTime.value;
   cell2.textContent = entryDescription.value;
-  cell2.appendChild(updateBtn());
+
+  var update = document.createElement('button');
+  update.textContent = 'Update';
+  update.id = 'updateButton';
+
+  cell2.appendChild(update);
 
   modal.classList.add('hidden');
   entryTime.value = '';
   entryDescription.value = '';
-}
-
-function updateBtn() {
-  var update = document.createElement('button');
-  update.textContent= 'Update';
-  update.id = 'update';
-  return update;
 }
