@@ -2,20 +2,17 @@ var selectDay = document.querySelector('.week');
 var schedule = document.querySelector('.event-viewer');
 var addEntry = document.querySelector('.addEntry');
 var modal = document.querySelector('.modal');
-var entryWeek = document.getElementById('entryWeek');
 var entrySubmit = document.getElementById('entrySubmit');
 var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
-var tableRow = document.querySelectorAll('tr');
 var tableBody = document.querySelector('tbody');
-var updateButton = document.querySelector('.update');
-var modalUpdate = document.querySelector('.modalUpdate');
+var updateButton = document.getElementById('update');
 
 selectDay.addEventListener('click', dayOfWeek);
 addEntry.addEventListener('click', entryModal);
 window.addEventListener('click', closeModal);
 entrySubmit.addEventListener('click', addTask);
-updateButton.addEventListener('click', updateModal);
+updateButton.addEventListener('click', entryModal);
 
 function dayOfWeek(event) {
   if (event.target.className !== 'day') {
@@ -28,9 +25,7 @@ function dayOfWeek(event) {
 function entryModal() {
   modal.classList.remove('hidden');
 }
-function updateModal() {
-  modalUpdate.classList.remove('hidden');
-}
+
 function closeModal(event) {
   if (event.target === modal) {
     modal.classList.add('hidden');
@@ -54,7 +49,7 @@ function addTask(event) {
 
 function updateBtn() {
   var update = document.createElement('button');
-  update.textContent = 'Update';
-  update.className = 'update';
+  update.textContent= 'Update';
+  update.id = 'update';
   return update;
 }
