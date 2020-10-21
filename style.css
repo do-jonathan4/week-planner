@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
 }
-.week > .day {
+.week > h2 {
   border: 2px solid black;
   width: 150px;
   height: 150px;
@@ -16,7 +16,7 @@
   align-items: center;
   box-sizing: border-box;
 }
-.week > .day:hover {
+.week > h2:hover {
   background-color: turquoise;
 }
 .addEntry {
@@ -79,5 +79,5 @@ textarea, select, input {
   width: 70px;
   text-align: center;
   position: relative;
-  left: 650px;
+  left: 70%;
 }
