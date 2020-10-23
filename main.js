@@ -25,20 +25,34 @@ var schedule = {
 var selectDay = document.querySelector('.week');
 var today = document.querySelector('.today');
 var addEntry = document.querySelector('.addEntry');
+
 var modal = document.querySelector('.modal');
-var entrySubmit = document.getElementById('entrySubmit');
+var entryWeek = document.getElementById('entryWeek');
 var entryTime = document.getElementById('entryTime');
 var entryDescription = document.getElementById('entryDescription');
-var tableBody = document.querySelector('tbody');
-var updateButton = document.querySelector('table');
-var modalTitle = document.querySelector('.modalTitle');
-var entryWeek = document.getElementById('entryWeek');
+var entrySubmit = document.getElementById('entrySubmit');
 
-selectDay.addEventListener('click', dayOfWeek);
+var modalUpdate = document.querySelector('.modal-update');
+var updateWeek = document.getElementById('updateWeek');
+var updateTime = document.getElementById('updateTime');
+var updateDescription = document.getElementById('updateDescription');
+
+var tableBody = document.querySelector('tbody');
+
 addEntry.addEventListener('click', entryModal);
+selectDay.addEventListener('click', dayOfWeek);
 window.addEventListener('click', closeModal);
 entrySubmit.addEventListener('click', addTask);
-updateButton.addEventListener('click', updateTask);
+
+function entryModal() {
+  modal.classList.remove('hidden');
+}
+function closeModal(event) {
+  if (event.target === modal || event.target === modalUpdate) {
+    modal.classList.add('hidden');
+    modalUpdate.classList.add('hidden');
+  }
+}
 
 function dayOfWeek(event) {
   if (event.target.className === 'week') {
@@ -46,66 +60,73 @@ function dayOfWeek(event) {
   }
   var sentence = event.target.textContent;
   today.textContent = 'Scheduled Events for ' + sentence;
-  viewDay(sentence);
-}
-function viewDay(forToday) {
-  var todaySchedule = schedule[forToday].task;
+
+  var todaySchedule = schedule[sentence].task;
   tableBody.innerHTML = '';
 
   for (var i = 0; i < todaySchedule.length; i++) {
-    var row = document.createElement('tr');
-    var cell1 = document.createElement('td');
-    var cell2 = document.createElement('td');
-    var updateButton = document.createElement('button');
-    updateButton.className =
-      'update' + ' ' +
-      forToday + ' ' +
-      todaySchedule[i].time
-      ;
-    updateButton.textContent = "Update";
+    var tr = document.createElement('tr');
+    var tdTime = document.createElement('td');
+    var tdDesc = document.createElement('td');
+    var buttonContainer = document.createElement('span');
+    var updateBtn = document.createElement('button');
+    updateBtn.className = 'update-button ' + i;
+    updateBtn.textContent = "Update";
 
-    cell1.textContent = todaySchedule[i].time;
-    cell2.textContent = todaySchedule[i].description;
-    cell2.appendChild(updateButton);
-    row.append(cell1, cell2);
-    tableBody.appendChild(row);
+    tdTime.textContent = todaySchedule[i].time;
+    tdDesc.textContent = todaySchedule[i].description;
+
+    buttonContainer.append(updateBtn);
+    tdDesc.append(buttonContainer);
+    tr.append(tdTime, tdDesc);
+    tableBody.append(tr);
   }
-}
 
-function entryModal() {
-  modal.classList.remove('hidden');
-}
-function closeModal(event) {
-  if (event.target === modal) {
-    modal.classList.add('hidden');
+  var updateButton = document.querySelector('.update-button');
+  updateButton.addEventListener('click', updateModal);
+
+  function updateModal() {
+    modalUpdate.classList.remove('hidden');
+    updateWeek.value = sentence;
+    updateTime.value = schedule[sentence].task[this.classList[1]].time;
+    updateDescription.value = schedule[sentence].task[this.classList[1]].description;
+  }
+
+  var updateSubmit = document.getElementById('updateSubmit');
+  updateSubmit.addEventListener('click', updateTask);
+
+  function updateTask(event) {
+    event.preventDefault();
+
+    var newTask = {
+      day: updateWeek.value,
+      time: updateTime.value,
+      description: updateDescription.value,
+    };
+
+    schedule[updateWeek.value].task.push(newTask);
+
+    modalUpdate.classList.add('hidden');
+    updateWeek.value = '';
+    updateTime.value = '';
+    updateDescription.value = '';
+
   }
 }
 
 function addTask(event) {
   event.preventDefault();
 
-  var newTask = {};
-  newTask.day = entryWeek.value;
-  newTask.time = entryTime.value;
-  newTask.description = entryDescription.value;
+  var newTask = {
+    day: entryWeek.value,
+    time: entryTime.value,
+    description: entryDescription.value,
+  };
 
   schedule[entryWeek.value].task.push(newTask);
 
   modal.classList.add('hidden');
-  modalTitle.textContent = 'Add Entry';
   entryWeek.value = '';
   entryTime.value = '';
   entryDescription.value = '';
-}
-
-function updateTask(event) {
-  if (event.target.className.indexOf('update') === -1) {
-    return;
-  }
-  entryModal();
-  var updateClass = event.target.classList;
-  modalTitle.textContent = 'Update Entry';
-  entryWeek.value = updateClass[1];
-  entryTime.value = updateClass[2];
-
 }
