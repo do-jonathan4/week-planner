@@ -68,7 +68,6 @@ function dayOfWeek(event) {
     var tr = document.createElement('tr');
     var tdTime = document.createElement('td');
     var tdDesc = document.createElement('td');
-    var buttonContainer = document.createElement('span');
     var updateBtn = document.createElement('button');
     updateBtn.className = 'update-button ' + i;
     updateBtn.textContent = "Update";
@@ -76,20 +75,22 @@ function dayOfWeek(event) {
     tdTime.textContent = todaySchedule[i].time;
     tdDesc.textContent = todaySchedule[i].description;
 
-    buttonContainer.append(updateBtn);
-    tdDesc.append(buttonContainer);
+  tdDesc.append(updateBtn);
     tr.append(tdTime, tdDesc);
     tableBody.append(tr);
   }
 
-  var updateButton = document.querySelector('.update-button');
+  var updateButton = document.querySelector('tbody');
   updateButton.addEventListener('click', updateModal);
 
-  function updateModal() {
+  function updateModal(event) {
+    if (event.target.className.indexOf('update-button') === -1) {
+      return;
+    }
     modalUpdate.classList.remove('hidden');
     updateWeek.value = sentence;
-    updateTime.value = schedule[sentence].task[this.classList[1]].time;
-    updateDescription.value = schedule[sentence].task[this.classList[1]].description;
+    updateTime.value = schedule[sentence].task[event.target.classList[1]].time;
+    updateDescription.value = schedule[sentence].task[event.target.classList[1]].description;
   }
 
   var updateSubmit = document.getElementById('updateSubmit');
