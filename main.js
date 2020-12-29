@@ -64,21 +64,35 @@ function dayOfWeek(event) {
   var todaySchedule = schedule[sentence].task;
   tableBody.innerHTML = '';
 
-  for (var i = 0; i < todaySchedule.length; i++) {
+
+  todaySchedule.forEach(function(row, index) {
     var tr = document.createElement('tr');
     var tdTime = document.createElement('td');
     var tdDesc = document.createElement('td');
-    var updateBtn = document.createElement('button');
-    updateBtn.className = 'update-button ' + i;
-    updateBtn.textContent = "Update";
+    tr.id = index;
 
-    tdTime.textContent = todaySchedule[i].time;
-    tdDesc.textContent = todaySchedule[i].description;
+    tdTime.textContent = todaySchedule[index].time;
+    tdDesc.textContent = todaySchedule[index].description;
 
-  tdDesc.append(updateBtn);
     tr.append(tdTime, tdDesc);
     tableBody.append(tr);
-  }
+  }, this);
+
+  // for (var i = 0; i < todaySchedule.length; i++) {
+  //   var tr = document.createElement('tr');
+  //   var tdTime = document.createElement('td');
+  //   var tdDesc = document.createElement('td');
+
+  //   var updateBtn = document.createElement('button');
+  //   updateBtn.className = 'update-button ' + i;
+  //   updateBtn.textContent = "Update";
+
+
+
+  // tdDesc.append(updateBtn);
+  //   tr.append(tdTime, tdDesc);
+  //   tableBody.append(tr);
+  // }
 
   var updateButton = document.querySelector('tbody');
   updateButton.addEventListener('click', updateModal);
