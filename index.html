@@ -13,13 +13,34 @@
     <h1>Weekly Planner</h1>
   </div>
   <div class="week">
-    <h2 class="Sunday">Sunday</h2>
-    <h2 class="Monday">Monday</h2>
-    <h2 class="Tuesday">Tuesday</h2>
-    <h2 class="Wednesday">Wednesday</h2>
-    <h2 class="Thursday">Thursday</h2>
-    <h2 class="Friday">Friday</h2>
-    <h2 class="Saturday">Saturday</h2>
+    <div>
+      <h2 class="Sunday">Sunday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Monday">Monday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Tuesday">Tuesday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Wednesday">Wednesday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Thursday">Thursday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Friday">Friday</h2>
+      <p>0</p>
+    </div>
+    <div>
+      <h2 class="Saturday">Saturday</h2>
+      <p>0</p>
+    </div>
   </div>
   <div class="center">
     <button class="addEntry">Add Entry</button>
@@ -40,7 +61,7 @@
       </tbody>
     </table>
   </div>
-  <div class="modal hidden">
+  <div class="modal hidden" id="modal-entry">
     <div class="modal-content">
       <div class="center">
         <h1 class="modalTitle">Add Entry</h1>
@@ -80,7 +101,7 @@
       </form>
     </div>
   </div>
-  <div class="modal-update hidden">
+  <div class="modal hidden" id="modal-update">
     <div class="modal-content">
       <div class="center">
         <h1>Update Entry</h1>
@@ -120,9 +141,22 @@
       </form>
     </div>
   </div>
+  <div class="modal hidden" id="modal-delete">
+    <div class="modal-content">
+      <div class="center">
+        <h1>Delete Entry</h1>
+      </div>
+      <div class="center">
+        <h3>Are you sure you want to delete this entry?</h3>
+      </div>
+      <div class="center">
+        <button class="delete-yes">Yes</button>
+        <button class="delete-no">No</button>
+      </div>
+    </div>
+  </div>
 
 </body>
-<!-- <script src="main.js"></script> -->
-<script src="view.js"></script>
+<script src="main.js"></script>
 
 </html>
