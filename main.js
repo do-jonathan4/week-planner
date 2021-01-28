@@ -121,6 +121,8 @@ var view = {
       tr.append(tdTime, tdDesc);
       tableBody.append(tr);
     }, this);
+
+    view.countTasks();
   },
   createUpdateButton: function() {
     var updateButton = document.createElement('button');
@@ -133,6 +135,23 @@ var view = {
     deleteButton.textContent = 'Delete';
     deleteButton.className = 'deleteButton';
     return deleteButton;
+  },
+  countTasks: function() {
+    var sunCount = document.querySelector('.sun-count');
+    var monCount = document.querySelector('.mon-count');
+    var tueCount = document.querySelector('.tue-count');
+    var wedCount = document.querySelector('.wed-count');
+    var thurCount = document.querySelector('.thur-count');
+    var friCount = document.querySelector('.fri-count');
+    var satCount = document.querySelector('.sat-count');
+
+    sunCount.textContent = schedule.Sunday.length;
+    monCount.textContent = schedule.Monday.length;
+    tueCount.textContent = schedule.Tuesday.length;
+    wedCount.textContent = schedule.Wednesday.length;
+    thurCount.textContent = schedule.Thursday.length;
+    friCount.textContent = schedule.Friday.length;
+    satCount.textContent = schedule.Saturday.length;
   },
   entryListener: function () {
     window.addEventListener('click', function (event) {
