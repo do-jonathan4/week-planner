@@ -10,7 +10,8 @@ var schedule = {
 
 var todoList = {
   addEntry: function(day, newTask) {
-    schedule[day].push(newTask);
+    var num = schedule[day].length;
+    schedule[day][num] = newTask;
   },
   updateEntry: function(day, position, newTask) {
     schedule[day][position] = newTask;
@@ -19,6 +20,7 @@ var todoList = {
     schedule[day].splice(position, 1);
   }
 };
+
 var handlers = {
   addEntry: function() {
     var modal = document.getElementById('modal-entry');
@@ -73,6 +75,7 @@ var handlers = {
         todoList.updateEntry(updateWeek.value, position, newTask);
       } else {
         todoList.addEntry(updateWeek.value, newTask);
+        todoList.deleteEntry(day, position);
       }
 
       view.displayTodos(updateWeek.value);
@@ -98,6 +101,7 @@ var handlers = {
     });
   }
 };
+
 var view = {
   displayTodos: function(day) {
     var tableBody = document.querySelector('tbody');
@@ -112,12 +116,18 @@ var view = {
       var tr = document.createElement('tr');
       var tdTime = document.createElement('td');
       var tdDesc = document.createElement('td');
+      var divTime = document.createElement('div');
+      var divDesc = document.createElement('div');
+      var tdSpan = document.createElement('span');
       tr.className = index + ' ' + day;
 
-      tdTime.textContent = todaySchedule[index].time;
-      tdDesc.textContent = todaySchedule[index].description;
+      divTime.textContent = todaySchedule[index].time;
+      divDesc.textContent = todaySchedule[index].description;
 
-      tdDesc.append(this.createDeleteButton(), this.createUpdateButton());
+      tdSpan.append(this.createDeleteButton(), this.createUpdateButton());
+      divDesc.append(tdSpan);
+      tdDesc.append(divDesc);
+      tdTime.append(divTime);
       tr.append(tdTime, tdDesc);
       tableBody.append(tr);
     }, this);
@@ -166,8 +176,8 @@ var view = {
 
     tableBody.addEventListener('click', function(event) {
       var elementClicked = event.target;
-      var position = elementClicked.parentNode.parentNode.classList[0];
-      var day = elementClicked.parentNode.parentNode.classList[1];
+      var position = elementClicked.parentNode.parentNode.parentNode.parentNode.classList[0];
+      var day = elementClicked.parentNode.parentNode.parentNode.parentNode.classList[1];
       if (elementClicked.className === 'deleteButton') {
         handlers.deleteEntry(day, position);
       }
@@ -183,7 +193,7 @@ var view = {
       }
     });
   },
-  tableListener: function() {
+  weekListener: function() {
     var selectDay = document.querySelector('.week');
 
     selectDay.addEventListener('click', function (event) {
@@ -203,4 +213,4 @@ var view = {
 view.entryListener();
 view.buttonListener();
 view.modalListener();
-view.tableListener();
+view.weekListener();
