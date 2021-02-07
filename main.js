@@ -10,6 +10,9 @@ var schedule = {
 
 var todoList = {
   addEntry: function(day, newTask) {
+    if (schedule[day] === undefined) {
+      console.log('schedule[day] is undefined');
+    }
     var num = schedule[day].length;
     schedule[day][num] = newTask;
   },

@@ -33,6 +33,12 @@ div > p {
 table {
   width:70%;
 }
+th:nth-child(1) {
+  width: 20%;
+}
+th:nth-child(2) {
+  width: 50%;
+}
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
