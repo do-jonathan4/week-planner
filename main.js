@@ -10,14 +10,15 @@ var schedule = {
 
 var todoList = {
   addEntry: function(day, newTask) {
-    if (schedule[day] === undefined) {
-      console.log('schedule[day] is undefined');
+    if (schedule[day]) {
+      var num = schedule[day].length;
+      schedule[day][num] = newTask;
     }
-    var num = schedule[day].length;
-    schedule[day][num] = newTask;
   },
   updateEntry: function(day, position, newTask) {
-    schedule[day][position] = newTask;
+    if (schedule[day]) {
+      schedule[day][position] = newTask;
+    }
   },
   deleteEntry: function (day, position) {
     schedule[day].splice(position, 1);
@@ -78,7 +79,9 @@ var handlers = {
         todoList.updateEntry(updateWeek.value, position, newTask);
       } else {
         todoList.addEntry(updateWeek.value, newTask);
-        todoList.deleteEntry(day, position);
+        if (schedule[day]) {
+          schedule[day].splice(position, 1);
+        }
       }
 
       view.displayTodos(updateWeek.value);
@@ -107,33 +110,35 @@ var handlers = {
 
 var view = {
   displayTodos: function(day) {
-    var tableBody = document.querySelector('tbody');
-    var today = document.querySelector('.today');
+    if (schedule[day]) {
+      var tableBody = document.querySelector('tbody');
+      var today = document.querySelector('.today');
 
-    today.textContent = 'Scheduled Events for ' + day;
+      today.textContent = 'Scheduled Events for ' + day;
 
-    var todaySchedule = schedule[day];
-    tableBody.innerHTML = '';
+      var todaySchedule = schedule[day];
+      tableBody.innerHTML = '';
 
-    todaySchedule.forEach(function (row, index) {
-      var tr = document.createElement('tr');
-      var tdTime = document.createElement('td');
-      var tdDesc = document.createElement('td');
-      var divTime = document.createElement('div');
-      var divDesc = document.createElement('div');
-      var tdSpan = document.createElement('span');
-      tr.className = index + ' ' + day;
+      todaySchedule.forEach(function (row, index) {
+        var tr = document.createElement('tr');
+        var tdTime = document.createElement('td');
+        var tdDesc = document.createElement('td');
+        var divTime = document.createElement('div');
+        var divDesc = document.createElement('div');
+        var tdSpan = document.createElement('span');
+        tr.className = index + ' ' + day;
 
-      divTime.textContent = todaySchedule[index].time;
-      divDesc.textContent = todaySchedule[index].description;
+        divTime.textContent = todaySchedule[index].time;
+        divDesc.textContent = todaySchedule[index].description;
 
-      tdSpan.append(this.createDeleteButton(), this.createUpdateButton());
-      divDesc.append(tdSpan);
-      tdDesc.append(divDesc);
-      tdTime.append(divTime);
-      tr.append(tdTime, tdDesc);
-      tableBody.append(tr);
-    }, this);
+        tdSpan.append(this.createDeleteButton(), this.createUpdateButton());
+        divDesc.append(tdSpan);
+        tdDesc.append(divDesc);
+        tdTime.append(divTime);
+        tr.append(tdTime, tdDesc);
+        tableBody.append(tr);
+      }, this);
+    }
 
     view.countTasks();
   },
