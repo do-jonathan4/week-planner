@@ -13,19 +13,40 @@
     <h1>Weekly Planner</h1>
   </div>
   <div class="week">
-    <h2 class="day">Sunday</h2>
-    <h2 class="day">Monday</h2>
-    <h2 class="day">Tuesday</h2>
-    <h2 class="day">Wednesday</h2>
-    <h2 class="day">Thursday</h2>
-    <h2 class="day">Friday</h2>
-    <h2 class="day">Saturday</h2>
+    <div>
+      <h2 class="Sunday">Sunday</h2>
+      <p class="sun-count">0</p>
+    </div>
+    <div>
+      <h2 class="Monday">Monday</h2>
+      <p class="mon-count">0</p>
+    </div>
+    <div>
+      <h2 class="Tuesday">Tuesday</h2>
+      <p class="tue-count">0</p>
+    </div>
+    <div>
+      <h2 class="Wednesday">Wednesday</h2>
+      <p class="wed-count">0</p>
+    </div>
+    <div>
+      <h2 class="Thursday">Thursday</h2>
+      <p class="thur-count">0</p>
+    </div>
+    <div>
+      <h2 class="Friday">Friday</h2>
+      <p class="fri-count">0</p>
+    </div>
+    <div>
+      <h2 class="Saturday">Saturday</h2>
+      <p class="sat-count">0</p>
+    </div>
   </div>
   <div class="center">
     <button class="addEntry">Add Entry</button>
   </div>
   <div class="center">
-    <h1 class="event-viewer">Scheduled Events for Monday</h1>
+    <h1 class="today">Scheduled Events for Monday</h1>
   </div>
   <div class="center">
     <table>
@@ -36,41 +57,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
+
       </tbody>
     </table>
   </div>
-  <div class="modal hidden">
+  <div class="modal hidden" id="modal-entry">
     <div class="modal-content">
       <div class="center">
-        <h1>Add Entry</h1>
+        <h1 class="modalTitle">Add Entry</h1>
       </div>
       <form action="" class="center">
         <label for="task">
@@ -107,6 +101,61 @@
       </form>
     </div>
   </div>
+  <div class="modal hidden" id="modal-update">
+    <div class="modal-content">
+      <div class="center">
+        <h1>Update Entry</h1>
+      </div>
+      <form action="" class="center" id="entryForm">
+        <label for="task">
+          <div class="center">
+            <select name="Week" id="updateWeek">
+              <option value="" disabled selected>Day</option>
+              <option value="Sunday">Sunday</option>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+            </select>
+            <select name="Time" id="updateTime" placeholder="Time">
+              <option value="" disabled selected>Time</option>
+              <option value="0100">0100</option>
+              <option value="0200">0200</option>
+              <option value="0300">0300</option>
+              <option value="0400">0400</option>
+              <option value="0500">0500</option>
+              <option value="0600">0600</option>
+              <option value="0700">0700</option>
+              <option value="0800">0800</option>
+              <option value="0900">0900</option>
+              <option value="1000">1000</option>
+              <option value="1100">1100</option>
+              <option value="1200">1200</option>
+            </select>
+            <input type="submit" id="updateSubmit" class="btnBlue">
+          </div>
+          <textarea name="description" id="updateDescription" cols="70" rows="10" placeholder="Description"></textarea>
+        </label>
+      </form>
+    </div>
+  </div>
+  <div class="modal hidden" id="modal-delete">
+    <div class="modal-content">
+      <div class="center">
+        <h1>Delete Entry</h1>
+      </div>
+      <div class="center">
+        <h3>Are you sure you want to delete this entry?</h3>
+      </div>
+      <div class="center">
+        <button class="delete-yes">Yes</button>
+        <button class="delete-no">No</button>
+      </div>
+    </div>
+  </div>
+
 </body>
 <script src="main.js"></script>
 
