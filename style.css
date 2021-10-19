@@ -1,3 +1,6 @@
+* {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 .center, .week {
   display: flex;
   justify-content: center;
@@ -31,7 +34,7 @@ div > p {
   background-color: cornflowerblue;
 }
 table {
-  width:70%;
+  width:60%;
 }
 th:nth-child(1) {
   width: 20%;
