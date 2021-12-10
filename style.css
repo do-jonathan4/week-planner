@@ -16,22 +16,23 @@
   box-sizing: border-box;
   position: relative;
 }
+div > h2 {
+  font-size: 1.2em;
+}
 div > p {
   position: absolute;
   bottom: 0px;
   right: 10px;
 }
-.week > div:hover {
-  background-color: turquoise;
+.week > div:hover, .addEntry:hover {
+  background-color: gray;
+  color: white;
 }
 .addEntry {
   width: 200px;
   height: 50px;
   margin: 20px;
   border: 2px solid black;
-}
-.addEntry:hover {
-  background-color: cornflowerblue;
 }
 table {
   width:60%;
